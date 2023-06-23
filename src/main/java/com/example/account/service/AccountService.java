@@ -3,6 +3,7 @@ package com.example.account.service;
 import com.example.account.domain.Account;
 import com.example.account.domain.AccountStatus;
 import com.example.account.repository.AccountRepository;
+import com.example.account.repository.AccountUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,17 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class AccountService {
     private final AccountRepository accountRepository;
+    private final AccountUserRepository accountUserRepository;
 
+    /**
+     * 사용자가 있는지 조회
+     * 계좌의 번호를 생성하고
+     * 계좌를 저장하고, 그 정보를 넘긴다.
+     */
     @Transactional
-    public void createAccount() {
-        Account account = Account.builder()
-                .accountNumber("40000")
-                .accountStatus(AccountStatus.IN_USE)
-                .build();
-        accountRepository.save(account);
+    public void createAccount(Long userId, Long initialBalance) {
+        accountUserRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User Not Found."));
     }
 
     @Transactional
