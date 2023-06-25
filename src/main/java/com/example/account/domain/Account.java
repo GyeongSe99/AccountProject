@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Account {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long id;    // 계좌 아이디
 
     @ManyToOne
     private AccountUser accountUser;

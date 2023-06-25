@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class AccountUser {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long id;    // 사용자 아이디.
 
     private String name;
 

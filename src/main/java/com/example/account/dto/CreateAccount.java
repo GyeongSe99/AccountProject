@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class CreateAccount {
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class Request {
         @NotNull
         @Min(1)
@@ -16,7 +17,8 @@ public class CreateAccount {
 
         @NotNull
         @Min(100)
-        private Long initialBalance;
+        private Long initialBalance;    // 초기 잔액
+
     }
 
     @Getter
@@ -28,6 +30,14 @@ public class CreateAccount {
         private Long userId;
         private String accountNumber;
         private LocalDateTime registeredAt;
+
+        public static Response from(AccountDto accountDto) {
+            return Response.builder()
+                    .userId(accountDto.getUserId())
+                    .accountNumber(accountDto.getAccountNumber())
+                    .registeredAt(accountDto.getRegisteredAt())
+                    .build();
+        }
     }
 
 }
