@@ -13,15 +13,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-public class AccountUser {
+public class AccountUser extends BaseEntity{
     @Id
     @GeneratedValue
     private Long id;    // 사용자 아이디.
 
     private String name;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
 }
